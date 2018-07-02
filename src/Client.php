@@ -6,6 +6,7 @@ use GuzzleHttp\Client as HttpClient;
 use GuzzleHttp\Psr7\Response;
 use JMS\Serializer\Serializer;
 use JMS\Serializer\SerializerBuilder;
+use Doctrine\Common\Annotations\AnnotationRegistry;
 
 class Client
 {
@@ -49,6 +50,8 @@ class Client
         $config = null
     )
     {
+        AnnotationRegistry::registerLoader('class_exists');
+
         $this->apiKey = $apiKey;
         $this->cx = $cx;
 
@@ -58,6 +61,8 @@ class Client
 
         $this->httpClient = new HttpClient($config);
         $this->serializer = SerializerBuilder::create()->build();
+
+
     }
 
     public function search($query, $start = 1, $num = 10)

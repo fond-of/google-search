@@ -51,8 +51,6 @@ class Item
         return $this->link;
     }
 
-
-
     /**
      * @return string
      */

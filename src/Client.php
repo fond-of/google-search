@@ -30,7 +30,8 @@ class Client
      */
     protected $defaultConfig = [
         'base_uri' => 'https://www.googleapis.com/customsearch/v1',
-        'timeout' => 2.0
+        'timeout' => 2.0,
+        'http_errors' => false
     ];
 
     /**

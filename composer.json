@@ -23,7 +23,8 @@
   ],
   "require": {
     "guzzlehttp/guzzle": "^6.0.0 || ^7.0.0",
-    "jms/serializer": "^3.0.0"
+    "jms/serializer": "^3.0.0",
+    "caseyamcl/guzzle_retry_middleware": "^2.7"
   },
   "require-dev": {
     "phpunit/phpunit": "*"

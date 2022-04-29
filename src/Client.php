@@ -3,7 +3,9 @@
 namespace FondOfPHP\GoogleCustomSearch;
 
 use GuzzleHttp\Client as HttpClient;
+use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Psr7\Response;
+use GuzzleRetry\GuzzleRetryMiddleware;
 use JMS\Serializer\Serializer;
 use JMS\Serializer\SerializerBuilder;
 use Doctrine\Common\Annotations\AnnotationRegistry;
@@ -60,10 +62,16 @@ class Client
             $config = $this->defaultConfig;
         }
 
+        $stack = HandlerStack::create();
+        $stack->push(GuzzleRetryMiddleware::factory());
+
+        $config = array_merge($config, [
+            'handler' => $stack,
+            'max_retry_attempts' => 3,
+        ]);
+
         $this->httpClient = new HttpClient($config);
         $this->serializer = SerializerBuilder::create()->build();
-
-
     }
 
     public function search($query, $start = 1, $num = 10)

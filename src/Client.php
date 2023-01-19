@@ -8,7 +8,6 @@ use GuzzleHttp\Psr7\Response;
 use GuzzleRetry\GuzzleRetryMiddleware;
 use JMS\Serializer\Serializer;
 use JMS\Serializer\SerializerBuilder;
-use Doctrine\Common\Annotations\AnnotationRegistry;
 
 class Client
 {
@@ -53,8 +52,6 @@ class Client
         $config = null
     )
     {
-        AnnotationRegistry::registerLoader('class_exists');
-
         $this->apiKey = $apiKey;
         $this->cx = $cx;
 

@@ -71,12 +71,13 @@ class Client
         $this->serializer = SerializerBuilder::create()->build();
     }
 
-    public function search($query, $start = 1, $num = 10)
+    public function search($query, $start = 1, $num = 10, $excludeTerms = '')
     {
         /** @var Response $response */
         $response = $this->httpClient->request('GET', null, [
             'query' => [
                 'q' => $query,
+                'excludeTerms' => $excludeTerms,
                 'cx' => $this->cx,
                 'key' => $this->apiKey,
                 'start' => $start,
